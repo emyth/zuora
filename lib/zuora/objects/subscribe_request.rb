@@ -43,10 +43,6 @@ module Zuora::Objects
             generate_account(a)
           end
 
-          s.__send__(zns, :SubscribeOptions) do |so|
-            generate_subscribe_options(so)
-          end unless subscribe_options.blank?
-
           s.__send__(zns, :PaymentMethod) do |pm|
             generate_payment_method(pm)
           end
@@ -58,6 +54,10 @@ module Zuora::Objects
           s.__send__(zns, :SoldToContact) do |btc|
             generate_sold_to_contact(btc)
           end unless sold_to_contact.nil?
+          
+          s.__send__(zns, :SubscribeOptions) do |so|
+            generate_subscribe_options(so)
+          end unless subscribe_options.blank?
 
           s.__send__(zns, :SubscriptionData) do |sd|
             sd.__send__(zns, :Subscription) do |sub|
@@ -139,7 +139,15 @@ module Zuora::Objects
 
     def generate_subscribe_options(builder)
       subscribe_options.each do |k,v|
-        builder.__send__(ons, k.to_s.camelize.to_sym, v)
+        if v.is_a?(Hash)
+          builder.__send__(zns, k.to_s.camelize.to_sym) do |subelem|
+            v.each do |k1, v1|
+              subelem.__send__(ons, k1.to_s.camelize.to_sym, v1)
+            end
+          end
+        else
+          builder.__send__(ons, k.to_s.camelize.to_sym, v)
+        end
       end
     end
 
