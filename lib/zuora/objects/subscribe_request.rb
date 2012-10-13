@@ -142,11 +142,11 @@ module Zuora::Objects
         if v.is_a?(Hash)
           builder.__send__(zns, k.to_s.camelize.to_sym) do |subelem|
             v.each do |k1, v1|
-              subelem.__send__(ons, k1.to_s.camelize.to_sym, v1)
+              subelem.__send__(zns, k1.to_s.camelize.to_sym, v1)
             end
           end
         else
-          builder.__send__(ons, k.to_s.camelize.to_sym, v)
+          builder.__send__(zns, k.to_s.camelize.to_sym, v)
         end
       end
     end
