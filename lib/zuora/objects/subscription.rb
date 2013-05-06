@@ -4,9 +4,8 @@ module Zuora::Objects
     belongs_to :ancestor_account, :class_name => 'Account'
     belongs_to :creator_account, :class_name => 'Account'
     belongs_to :creator_invoice_owner, :class_name => 'Account'
-    #has_many :rate_plans
+    has_many :rate_plans
 
-    
     #validates_presence_of :contract_effective_date, :term_start_date
 
     #validates_inclusion_of    :auto_renew, :in => [true, false], allow_nil: true
@@ -23,7 +22,7 @@ module Zuora::Objects
     #validates_datetime_of     :term_end_date, :allow_nil => true
     #validates_datetime_of     :term_start_date
     #validates_inclusion_of    :term_type, :in => ['TERMED', 'EVERGREEN'], :allow_nil => true
-   
+
 
 
     define_attributes do
