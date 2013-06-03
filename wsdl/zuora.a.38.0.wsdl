@@ -654,6 +654,7 @@
 						<sequence>
 							<element minOccurs="0" name="AccountId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="AutoRenew" nillable="true" type="boolean" />
+							<element minOccurs="0" name="Campaign_Id__c" nillable="true" type="string" />
 							<element minOccurs="0" name="CancelledDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="ContractAcceptanceDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="ContractEffectiveDate" nillable="true" type="dateTime" />
